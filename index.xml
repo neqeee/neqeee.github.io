@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jiayu&#39;s Note</title>
+    <link>https://nimble-maamoul-9a2846.netlify.app/</link>
+    <description>Recent content on Jiayu&#39;s Note</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Thu, 25 Aug 2022 01:38:40 +0800</lastBuildDate><atom:link href="https://nimble-maamoul-9a2846.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>設定 Sprite Alignment 朝向中心</title>
+      <link>https://nimble-maamoul-9a2846.netlify.app/posts/set-alignment-by-initial-location/</link>
+      <pubDate>Thu, 25 Aug 2022 01:38:40 +0800</pubDate>
+      
+      <guid>https://nimble-maamoul-9a2846.netlify.app/posts/set-alignment-by-initial-location/</guid>
+      <description>&lt;h3 id=&#34;sprite-render-設置&#34;&gt;Sprite Render 設置&lt;/h3&gt;
+&lt;p&gt;Alignment: Custom Alignment&lt;/p&gt;
+&lt;p&gt;FacingMode: Custom Facing Vector&lt;/p&gt;
+&lt;h3 id=&#34;新增-sprite-facing-and-alignment&#34;&gt;新增 Sprite Facing and Alignment&lt;/h3&gt;
+&lt;p&gt;在Particle Spawn底下新增 Sprite Facing and Alignment&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Module Usage Note&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;On the sprite renderer, setting facing or alignment to &lt;em&gt;custom&lt;/em&gt; allows these vectors to control the orientation of sprites. By default the renderer attributes are bound to &lt;code&gt;Particles.SpriteFacing&lt;/code&gt; and &lt;code&gt;Particles. Sprite Alignment&lt;/code&gt;. If this module is used in an emitter script, it sets the emitter versions of these attributes instead for use when the sprite source mode is set to &lt;em&gt;&amp;ldquo;Emitter&amp;rdquo;&lt;/em&gt;.
+Sprite facing can be considered the normal of the particle.&lt;/p&gt;
+&lt;p&gt;Sprite alignment can be considered the tangent to that normal.&lt;/p&gt;
+&lt;p&gt;If only sprite facing is set to custom, alignment will do its best to orient around that facing direction.&lt;/p&gt;
+&lt;p&gt;Sprite Facing and Alignment are always World Space vectors, so we provide some default transformations when working in Localspace which can be overridden.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;可以將 Sprite Facing 視為 Sprite 的法線，Alignment 視為該法線的切線&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Facing 設為 (0, 0, 1) → Sprite面垂直 Z 軸、正面朝 Z 正軸&lt;/p&gt;
+&lt;p&gt;Alignment 設為(0, 1, 0) → Sprite 貼圖的頂部朝 Y 正軸&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220825-1.png&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;這邊的向量只會影響 Sprite 貼圖的方向，大小不會影響，所以數字都設為 1&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;想得效的效果：Sprite貼圖頂部全朝向Emitter的中心（或相反）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220825-3.png&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;新增一個 Module，要 Get 的屬性有兩個&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Particle Position&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Engine Owner Position&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一個是每顆粒子的位置，一個是發射器的初始位置&lt;/p&gt;
+&lt;p&gt;兩者相減，得出的向量連接&lt;code&gt;Dirction and Length Safe&lt;/code&gt;，作用是讀取向量的方向和長度&lt;/p&gt;
+&lt;p&gt;將向量的方向 Set Particle Alignment 後，Library Visibility 選擇 &lt;strong&gt;Exposed&lt;/strong&gt;，再應用到 Particle Spawn 底下&lt;/p&gt;
+&lt;p&gt;這時獲得一個愛心都朝內的效果了！&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220825-2.png&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;如果要朝外，可以把兩個向量對調，或是在 Initialize Particle 的 UV Mode 設 Custom 直接把 Y 改為 -1，愛心就會直接朝外了&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Substance Designer 製作法陣貼圖</title>
+      <link>https://nimble-maamoul-9a2846.netlify.app/posts/create-textures-in-sd/</link>
+      <pubDate>Tue, 09 Aug 2022 00:03:29 +0800</pubDate>
+      
+      <guid>https://nimble-maamoul-9a2846.netlify.app/posts/create-textures-in-sd/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;此筆記內容的教學是ArtStation上的&lt;a href=&#34;https://www.artstation.com/learning/courses/4vk/healing-spell-vfx-using-shapes-to-create-textures-in-substance-designer/chapters/xYme/magic-circle-texture-blockout&#34;&gt;Magic Circle Texture&lt;/a&gt;，第一章有Substance Designer基礎的節點介紹，推薦給完全沒使用過Substance Designer的初學者看&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;製作愛心貼圖&#34;&gt;製作愛心貼圖&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808151431.png&#34; alt=&#34;Image&#34;  /&gt;
+
+Shape在&lt;code&gt;Transformation 2D&lt;/code&gt;移動時邊緣要設定銳利一點，可以在&lt;code&gt;Filtering&lt;/code&gt;選擇&lt;strong&gt;Nearest&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用&lt;code&gt;Transformation 2D&lt;/code&gt;調整大小，按住&lt;code&gt;Ctrl + Shift&lt;/code&gt; 讓它保持居中及等比例縮放&lt;/p&gt;
+&lt;h3 id=&#34;在愛心外圍添加圓環&#34;&gt;在愛心外圍添加圓環&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;選取之前新增的Shpae，按&lt;code&gt;Ctrl + D&lt;/code&gt;複製一個調整大小。&lt;/li&gt;
+&lt;li&gt;連上&lt;code&gt;Edge Dectect&lt;/code&gt;，此節點會在對比度區域周圍畫出輪廓。&lt;/li&gt;
+&lt;li&gt;Shape另外拉出一條線連上Splatter Circular，圓環外側新增三個環繞的圓。&lt;/li&gt;
+&lt;li&gt;用Blend把三個形狀（愛心、圓環、外側的3個圓）混合在一起，Blend Mode選擇&lt;strong&gt;Max&lt;/strong&gt;。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808154000.png#center&#34; alt=&#34;Image&#34;  /&gt;
+
+這樣基本構圖就完成了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;撲克牌花色&#34;&gt;撲克牌花色&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;方法一、用節點組合形狀&lt;/strong&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808171407.png#center&#34; alt=&#34;Image&#34;  /&gt;
+
+&lt;strong&gt;方法二、利用&lt;code&gt;Text&lt;/code&gt; 節點直接輸入字元&lt;/strong&gt;
+♥：&lt;code&gt;Alt + 259&lt;/code&gt;
+♦：&lt;code&gt;Alt + 260&lt;/code&gt;
+♣：&lt;code&gt;Alt + 261&lt;/code&gt;
+♠：&lt;code&gt;Alt + 262&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可用&lt;code&gt;Alt + 數字鍵&lt;/code&gt;輸入，只要確保這個字型有這些符號可以使用就行。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808173352.png#center&#34; alt=&#34;Image&#34;  /&gt;
+
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808173433.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;將三種花色輸入到圓環外三個圓中&#34;&gt;將三種花色輸入到圓環外三個圓中&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808175402.png#center&#34; alt=&#34;Image&#34;  /&gt;
+
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808175759.png#center&#34; alt=&#34;Image&#34;  /&gt;
+
+在&lt;code&gt;Splatter Circular&lt;/code&gt;節點中增加Input Number，將3種花色作為Input輸入進去。&lt;/p&gt;
+&lt;h3 id=&#34;用level調整blend混合結果&#34;&gt;用Level調整Blend混合結果&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;將花色跟圓環混合後會有重疊的部份，可以利用&lt;strong&gt;Levels&lt;/strong&gt;節點製作遮罩&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808180321.png#center&#34; alt=&#34;Image&#34;  /&gt;
+
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808181015.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;用&lt;code&gt;Level&lt;/code&gt;取出花色的圓形Mask，Invert之後連接到Blend的Opacity作為遮罩&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808181819.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;圓環內增加形狀&#34;&gt;圓環內增加形狀&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1. 製作 Spark Shape&lt;/strong&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808182241.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Shape&lt;/code&gt;-&lt;code&gt;Quad Transform GrayScale&lt;/code&gt;-&lt;code&gt;Transform 2D&lt;/code&gt;（/2 Offset0.5/0.5 ）-&lt;code&gt;Mirror&lt;/code&gt;（Invert Axis X: &lt;code&gt;True&lt;/code&gt;）-&lt;code&gt;Mirror&lt;/code&gt;（Mirror Axis Y）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 連接Shape Mapper，調整大小以匹配圓環&lt;/strong&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808183100.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;被壓縮的閃光形狀有出現分離的圖元，所以需再增加一個形狀來填補之間的空白&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;3. 圓環的上個節點Shape再連一條Edge Detect出來，用Blend混合&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808183758.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808184852.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;再加上之前做好的愛心，得出一張有不同明度值形狀的貼圖。&lt;/p&gt;
+&lt;h3 id=&#34;利用edge-detect獲取貼圖邊緣&#34;&gt;利用Edge Detect獲取貼圖邊緣&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808185507.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;放大看可能發現線條間有縫隙，縫隙產生原因是之前使用Transform2D縮放導致黑白邊緣之間有插值，要解決這個問題可以將前面的&lt;strong&gt;Mipmap Mode&lt;/strong&gt;調整成&lt;strong&gt;Manual&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808185622.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;合併輪廓跟明度貼圖增加模糊效果&#34;&gt;合併輪廓跟明度貼圖、增加模糊效果&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808233551.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用到的節點：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Shape Glow Grayscale&lt;/code&gt; ：增加外光暈&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Radial Blur&lt;/code&gt;：外圍圓環加一些徑向模糊&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在Texture中偽造一些動態模糊以消除特效播放時可能出現的閃頻效果&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;輸出貼圖&#34;&gt;輸出貼圖&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808234338.png#center&#34; alt=&#34;Image&#34;  /&gt;
+
+上面的扳手Icon為Output按鈕。&lt;/p&gt;
+&lt;p&gt;Output時預設檔名會依照&lt;code&gt;graph_identifier&lt;/code&gt;命名，依照個人習慣會將graph命名為&lt;code&gt;T&lt;/code&gt;，Output節點的Identifier命名為&lt;code&gt;MagicCircle_A&lt;/code&gt;，如此一來會得到檔名為&lt;code&gt;T_MagicCircle_A&lt;/code&gt;的貼圖。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://nimble-maamoul-9a2846.netlify.app/img/20220808234423.png#center&#34; alt=&#34;Image&#34;  /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;下方的Auomatic export when outputs change勾上的話，會在每次Outputs有改變的時候自動輸出貼圖。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jiayu Lin</title>
+      <link>https://nimble-maamoul-9a2846.netlify.app/about/</link>
+      <pubDate>Sat, 06 Aug 2022 09:31:16 +0800</pubDate>
+      
+      <guid>https://nimble-maamoul-9a2846.netlify.app/about/</guid>
+      <description>&lt;p&gt;我是Jiayu&lt;/p&gt;
+&lt;p&gt;這邊是我放置特效相關學習筆記的地方，目前主要學習Unreal、Substance Designer、Blender
+有共同興趣都歡迎一起討論，如果文章有錯語也請不吝指正！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Substance Designer on Jiayu&#39;s Note</title>
+    <link>https://nimble-maamoul-9a2846.netlify.app/tags/substance-designer/</link>
+    <description>Recent content in Substance Designer on Jiayu&#39;s Note</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 09 Aug 2022 00:03:29 +0800</lastBuildDate><atom:link href="https://nimble-maamoul-9a2846.netlify.app/tags/substance-designer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Substance Designer 製作法陣貼圖</title>
+      <link>https://nimble-maamoul-9a2846.netlify.app/posts/create-textures-in-sd/</link>
+      <pubDate>Tue, 09 Aug 2022 00:03:29 +0800</pubDate>
+      
+      <guid>https://nimble-maamoul-9a2846.netlify.app/posts/create-textures-in-sd/</guid>
+      <description>利用Substance Designer製作法陣貼圖，教學內文引用自Bruno Afonseca的教學</description>
+    </item>
+    
+  </channel>
+</rss>
