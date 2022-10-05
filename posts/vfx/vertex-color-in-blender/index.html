@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto " >
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Blender 給模型刷頂點色 | Jiayu&#39;s Blog</title>
+<meta name="keywords" content="Blender, Vertex Color, Unreal">
+<meta name="description" content="在 Blender 如何設定 VertexColor ，刷頂點色後導進 Unreal 。">
+<meta name="author" content="Jiayu">
+<link rel="canonical" href="https://neqeee.github.io/posts/vfx/vertex-color-in-blender/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.6a06c20ea3605503fa26b16b3be86842809358a98909a88dc89673021dc56000.css" integrity="sha256-agbCDqNgVQP6JrFrO&#43;hoQoCTWKmJCaiNyJZzAh3FYAA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="apple-touch-icon" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="mask-icon" href="https://neqeee.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel='stylesheet' href='https://cdn.staticfile.org/hack-font/3.3.0/web/hack.min.css'><meta property="og:title" content="Blender 給模型刷頂點色" />
+<meta property="og:description" content="在 Blender 如何設定 VertexColor ，刷頂點色後導進 Unreal 。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://neqeee.github.io/posts/vfx/vertex-color-in-blender/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-03T23:33:05&#43;08:00" />
+<meta property="article:modified_time" content="2022-10-03T23:33:05&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Blender 給模型刷頂點色"/>
+<meta name="twitter:description" content="在 Blender 如何設定 VertexColor ，刷頂點色後導進 Unreal 。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://neqeee.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "VFX",
+      "item": "https://neqeee.github.io/posts/vfx/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Blender 給模型刷頂點色",
+      "item": "https://neqeee.github.io/posts/vfx/vertex-color-in-blender/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Blender 給模型刷頂點色",
+  "name": "Blender 給模型刷頂點色",
+  "description": "在 Blender 如何設定 VertexColor ，刷頂點色後導進 Unreal 。",
+  "keywords": [
+    "Blender", "Vertex Color", "Unreal"
+  ],
+  "articleBody": "刷頂點 Alpha 設置檢查頂點色材質 新增 Color Attribute ， Alpha 輸出到透明色（Transparent BSDF）。 連接一個 Diffuse ，給模型基礎顏色。 透明色跟 Diffuse 用 Mix Shader 混合，連接到 Output 節點的 Surface 。 可以增加一個 Bright Contrast 在 Vertex Color 後加強亮度對比方便檢查。 繪製頂點色 在 Edit Mode 選好要編輯的頂點，進到 Vertex Pianter Mode（頂點繪製模式）。 選擇點模式，快捷鍵 N 打開右側工具，Tool 中的筆刷混合選擇 Erase Alpha（擦除Alpha）。 確認 Advanced 中的 Accumulate （累積）是取消勾選的，打開的話會像 PS 筆刷一樣越擦越淡到Alpha為0。 最外圈用強度1的筆刷刷，也就是擦除頂點 Alpha 到完全透明。 選第2圈的點，用強度0.6的筆刷刷過，等於保留 40% 的不透明度。 第3圈，筆刷強度調為0.3，讓 Mesh 不透明度是向外衰減的趨勢。 Blender 導出 Mesh 選好要導出的物件，選擇 File\u003eExport\u003eFBX 導出FBX檔。 導進 Unreal Mesh 設置 如果發現沒有頂點色沒輸入到，Import Settings\u003eVertex Color Import Option 的 Ingore 改為 Replace ，再 Reimport 一次。\n完成效果 ",
+  "wordCount" : "373",
+  "inLanguage": "en",
+  "datePublished": "2022-10-03T23:33:05+08:00",
+  "dateModified": "2022-10-03T23:33:05+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Jiayu"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://neqeee.github.io/posts/vfx/vertex-color-in-blender/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jiayu's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://neqeee.github.io/img/Avatar_1.png"
+    }
+  }
+}
+</script>
+    <script src="https://kit.fontawesome.com/2cf91da4d1.js" crossorigin="anonymous"></script>
+    
+    <link href="/assets/css/extended/fontawesome/all.css" rel="stylesheet">
+</head>
+
+
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://neqeee.github.io/" accesskey="h" title="Jiayu&#39;s Blog">
+            <img src="https://neqeee.github.io/img/Avatar_1.gif" alt="logo" aria-label="logo"
+                 height="35">Jiayu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://neqeee.github.io/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://neqeee.github.io/">Home</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="https://neqeee.github.io/posts/">Posts</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="https://neqeee.github.io/posts/vfx/">VFX</a></div>
+    <h1 class="post-title">
+      Blender 給模型刷頂點色
+    </h1>
+    <div class="post-description">
+      在 Blender 如何設定 VertexColor ，刷頂點色後導進 Unreal 。
+    </div>
+    <div class="post-meta"><span title='2022-10-03 23:33:05 +0800 CST'>Oct 3, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Jiayu
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">Table of Contents</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e5%88%b7%e9%a0%82%e9%bb%9e-alpha" aria-label="刷頂點 Alpha">刷頂點 Alpha</a><ul>
+                            
+                    <li>
+                        <a href="#%e8%a8%ad%e7%bd%ae%e6%aa%a2%e6%9f%a5%e9%a0%82%e9%bb%9e%e8%89%b2%e6%9d%90%e8%b3%aa" aria-label="設置檢查頂點色材質">設置檢查頂點色材質</a></li>
+                    <li>
+                        <a href="#%e7%b9%aa%e8%a3%bd%e9%a0%82%e9%bb%9e%e8%89%b2" aria-label="繪製頂點色">繪製頂點色</a></li>
+                    <li>
+                        <a href="#blender-%e5%b0%8e%e5%87%ba-mesh" aria-label="Blender 導出 Mesh">Blender 導出 Mesh</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#%e5%b0%8e%e9%80%b2-unreal" aria-label="導進 Unreal">導進 Unreal</a><ul>
+                            
+                    <li>
+                        <a href="#mesh-%e8%a8%ad%e7%bd%ae" aria-label="Mesh 設置">Mesh 設置</a></li>
+                    <li>
+                        <a href="#%e5%ae%8c%e6%88%90%e6%95%88%e6%9e%9c" aria-label="完成效果">完成效果</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><h2 id="刷頂點-alpha">刷頂點 Alpha<a hidden class="anchor" aria-hidden="true" href="#刷頂點-alpha">#</a></h2>
+<p><img loading="lazy" src="1.png#center" alt="Vector Color"  />
+</p>
+<h3 id="設置檢查頂點色材質">設置檢查頂點色材質<a hidden class="anchor" aria-hidden="true" href="#設置檢查頂點色材質">#</a></h3>
+<ul>
+<li>新增 Color Attribute ， Alpha 輸出到透明色（Transparent BSDF）。</li>
+<li>連接一個 Diffuse ，給模型基礎顏色。</li>
+<li>透明色跟 Diffuse 用 Mix Shader 混合，連接到 Output 節點的 Surface 。</li>
+<li>可以增加一個 Bright Contrast 在 Vertex Color 後加強亮度對比方便檢查。</li>
+</ul>
+<h3 id="繪製頂點色">繪製頂點色<a hidden class="anchor" aria-hidden="true" href="#繪製頂點色">#</a></h3>
+<ul>
+<li>在 Edit Mode 選好要編輯的頂點，進到 Vertex Pianter Mode（頂點繪製模式）。</li>
+<li>選擇點模式，快捷鍵 <code>N</code> 打開右側工具，Tool 中的筆刷混合選擇 Erase Alpha（擦除Alpha）。</li>
+<li>確認 Advanced 中的 Accumulate （累積）是取消勾選的，打開的話會像 PS 筆刷一樣越擦越淡到Alpha為0。</li>
+<li>最外圈用強度1的筆刷刷，也就是擦除頂點 Alpha 到完全透明。</li>
+<li>選第2圈的點，用強度0.6的筆刷刷過，等於保留 40% 的不透明度。</li>
+<li>第3圈，筆刷強度調為0.3，讓 Mesh 不透明度是向外衰減的趨勢。</li>
+</ul>
+<h3 id="blender-導出-mesh">Blender 導出 Mesh<a hidden class="anchor" aria-hidden="true" href="#blender-導出-mesh">#</a></h3>
+<p><img loading="lazy" src="2.png#center" alt="Export Setting"  />
+</p>
+<ul>
+<li>選好要導出的物件，選擇 <em>File&gt;Export&gt;FBX</em> 導出FBX檔。</li>
+</ul>
+<h2 id="導進-unreal">導進 Unreal<a hidden class="anchor" aria-hidden="true" href="#導進-unreal">#</a></h2>
+<h3 id="mesh-設置">Mesh 設置<a hidden class="anchor" aria-hidden="true" href="#mesh-設置">#</a></h3>
+<p><img loading="lazy" src="3.png#center" alt="Import Setting"  />
+</p>
+<blockquote>
+<p>如果發現沒有頂點色沒輸入到，<em>Import Settings&gt;Vertex Color Import Option</em> 的 Ingore 改為 <strong>Replace</strong> ，再 Reimport 一次。</p>
+</blockquote>
+<h3 id="完成效果">完成效果<a hidden class="anchor" aria-hidden="true" href="#完成效果">#</a></h3>
+<p><img loading="lazy" src="4.png#center" alt="Finish"  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://neqeee.github.io/tags/blender/">Blender</a></li>
+      <li><a href="https://neqeee.github.io/tags/vertex-color/">Vertex Color</a></li>
+      <li><a href="https://neqeee.github.io/tags/unreal/">Unreal</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://neqeee.github.io/posts/vfx/set-alignment-by-initial-location/">
+    <span class="title">Next »</span>
+    <br>
+    <span>設定 Sprite Alignment 朝向中心</span>
+  </a>
+</nav>
+
+  <div class="disqus markdown">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    
+    
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'jiayusnote';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  </footer>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://neqeee.github.io/">Jiayu&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

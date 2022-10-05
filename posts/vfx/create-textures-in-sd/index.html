@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto " >
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Substance Designer 製作法陣貼圖 | Jiayu&#39;s Blog</title>
+<meta name="keywords" content="Substance Designer">
+<meta name="description" content="利用Substance Designer製作法陣貼圖。">
+<meta name="author" content="Jiayu">
+<link rel="canonical" href="https://neqeee.github.io/posts/vfx/create-textures-in-sd/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.6a06c20ea3605503fa26b16b3be86842809358a98909a88dc89673021dc56000.css" integrity="sha256-agbCDqNgVQP6JrFrO&#43;hoQoCTWKmJCaiNyJZzAh3FYAA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="apple-touch-icon" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="mask-icon" href="https://neqeee.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel='stylesheet' href='https://cdn.staticfile.org/hack-font/3.3.0/web/hack.min.css'><meta property="og:title" content="Substance Designer 製作法陣貼圖" />
+<meta property="og:description" content="利用Substance Designer製作法陣貼圖。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://neqeee.github.io/posts/vfx/create-textures-in-sd/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-09T00:03:29&#43;08:00" />
+<meta property="article:modified_time" content="2022-08-09T00:03:29&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Substance Designer 製作法陣貼圖"/>
+<meta name="twitter:description" content="利用Substance Designer製作法陣貼圖。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://neqeee.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "VFX",
+      "item": "https://neqeee.github.io/posts/vfx/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Substance Designer 製作法陣貼圖",
+      "item": "https://neqeee.github.io/posts/vfx/create-textures-in-sd/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Substance Designer 製作法陣貼圖",
+  "name": "Substance Designer 製作法陣貼圖",
+  "description": "利用Substance Designer製作法陣貼圖。",
+  "keywords": [
+    "Substance Designer"
+  ],
+  "articleBody": " 此筆記內容的教學是ArtStation上的Magic Circle Texture，第一章有Substance Designer基礎的節點介紹，推薦給完全沒使用過Substance Designer的初學者看\n製作愛心貼圖 Shape在Transformation 2D移動時邊緣要設定銳利一點，可以在Filtering選擇Nearest\n用Transformation 2D調整大小，按住Ctrl + Shift 讓它保持居中及等比例縮放\n在愛心外圍添加圓環 選取之前新增的Shpae，按Ctrl + D複製一個調整大小。 連上Edge Dectect，此節點會在對比度區域周圍畫出輪廓。 Shape另外拉出一條線連上Splatter Circular，圓環外側新增三個環繞的圓。 用Blend把三個形狀（愛心、圓環、外側的3個圓）混合在一起，Blend Mode選擇Max。 這樣基本構圖就完成了。 撲克牌花色 方法一、用節點組合形狀 方法二、利用Text 節點直接輸入字元 ♥：Alt + 259 ♦：Alt + 260 ♣：Alt + 261 ♠：Alt + 262\n可用Alt + 數字鍵輸入，只要確保這個字型有這些符號可以使用就行。 將三種花色輸入到圓環外三個圓中 在Splatter Circular節點中增加Input Number，將3種花色作為Input輸入進去。\n用Level調整Blend混合結果 將花色跟圓環混合後會有重疊的部份，可以利用Levels節點製作遮罩\n用Level取出花色的圓形Mask，Invert之後連接到Blend的Opacity作為遮罩\n圓環內增加形狀 1. 製作 Spark Shape Shape-Quad Transform GrayScale-Transform 2D（/2 Offset0.5/0.5 ）-Mirror（Invert Axis X: True）-Mirror（Mirror Axis Y）\n2. 連接Shape Mapper，調整大小以匹配圓環 被壓縮的閃光形狀有出現分離的圖元，所以需再增加一個形狀來填補之間的空白\n3. 圓環的上個節點Shape再連一條Edge Detect出來，用Blend混合\n再加上之前做好的愛心，得出一張有不同明度值形狀的貼圖。\n利用Edge Detect獲取貼圖邊緣 放大看可能發現線條間有縫隙，縫隙產生原因是之前使用Transform2D縮放導致黑白邊緣之間有插值，要解決這個問題可以將前面的Mipmap Mode調整成Manual。\n合併輪廓跟明度貼圖、增加模糊效果 使用到的節點： Shape Glow Grayscale ：增加外光暈\nRadial Blur：外圍圓環加一些徑向模糊\n在Texture中偽造一些動態模糊以消除特效播放時可能出現的閃頻效果\n輸出貼圖 上面的扳手Icon為Output按鈕。\nOutput時預設檔名會依照graph_identifier命名，依照個人習慣會將graph命名為T，Output節點的Identifier命名為MagicCircle_A，如此一來會得到檔名為T_MagicCircle_A的貼圖。 下方的Auomatic export when outputs change勾上的話，會在每次Outputs有改變的時候自動輸出貼圖。\n",
+  "wordCount" : "1181",
+  "inLanguage": "en",
+  "datePublished": "2022-08-09T00:03:29+08:00",
+  "dateModified": "2022-08-09T00:03:29+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Jiayu"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://neqeee.github.io/posts/vfx/create-textures-in-sd/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jiayu's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://neqeee.github.io/img/Avatar_1.png"
+    }
+  }
+}
+</script>
+    <script src="https://kit.fontawesome.com/2cf91da4d1.js" crossorigin="anonymous"></script>
+    
+    <link href="/assets/css/extended/fontawesome/all.css" rel="stylesheet">
+</head>
+
+
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://neqeee.github.io/" accesskey="h" title="Jiayu&#39;s Blog">
+            <img src="https://neqeee.github.io/img/Avatar_1.gif" alt="logo" aria-label="logo"
+                 height="35">Jiayu&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://neqeee.github.io/search/" title="🔍 (Alt &#43; /)" accesskey=/>
+                    <span>🔍</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://neqeee.github.io/">Home</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="https://neqeee.github.io/posts/">Posts</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="https://neqeee.github.io/posts/vfx/">VFX</a></div>
+    <h1 class="post-title">
+      Substance Designer 製作法陣貼圖
+    </h1>
+    <div class="post-description">
+      利用Substance Designer製作法陣貼圖。
+    </div>
+    <div class="post-meta"><span title='2022-08-09 00:03:29 +0800 CST'>Aug 9, 2022</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Jiayu
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                <span class="details">Table of Contents</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e8%a3%bd%e4%bd%9c%e6%84%9b%e5%bf%83%e8%b2%bc%e5%9c%96" aria-label="製作愛心貼圖">製作愛心貼圖</a></li>
+                    <li>
+                        <a href="#%e5%9c%a8%e6%84%9b%e5%bf%83%e5%a4%96%e5%9c%8d%e6%b7%bb%e5%8a%a0%e5%9c%93%e7%92%b0" aria-label="在愛心外圍添加圓環">在愛心外圍添加圓環</a></li>
+                    <li>
+                        <a href="#%e6%92%b2%e5%85%8b%e7%89%8c%e8%8a%b1%e8%89%b2" aria-label="撲克牌花色">撲克牌花色</a></li>
+                    <li>
+                        <a href="#%e5%b0%87%e4%b8%89%e7%a8%ae%e8%8a%b1%e8%89%b2%e8%bc%b8%e5%85%a5%e5%88%b0%e5%9c%93%e7%92%b0%e5%a4%96%e4%b8%89%e5%80%8b%e5%9c%93%e4%b8%ad" aria-label="將三種花色輸入到圓環外三個圓中">將三種花色輸入到圓環外三個圓中</a></li>
+                    <li>
+                        <a href="#%e7%94%a8level%e8%aa%bf%e6%95%b4blend%e6%b7%b7%e5%90%88%e7%b5%90%e6%9e%9c" aria-label="用Level調整Blend混合結果">用Level調整Blend混合結果</a></li>
+                    <li>
+                        <a href="#%e5%9c%93%e7%92%b0%e5%85%a7%e5%a2%9e%e5%8a%a0%e5%bd%a2%e7%8b%80" aria-label="圓環內增加形狀">圓環內增加形狀</a></li>
+                    <li>
+                        <a href="#%e5%88%a9%e7%94%a8edge-detect%e7%8d%b2%e5%8f%96%e8%b2%bc%e5%9c%96%e9%82%8a%e7%b7%a3" aria-label="利用Edge Detect獲取貼圖邊緣">利用Edge Detect獲取貼圖邊緣</a></li>
+                    <li>
+                        <a href="#%e5%90%88%e4%bd%b5%e8%bc%aa%e5%bb%93%e8%b7%9f%e6%98%8e%e5%ba%a6%e8%b2%bc%e5%9c%96%e5%a2%9e%e5%8a%a0%e6%a8%a1%e7%b3%8a%e6%95%88%e6%9e%9c" aria-label="合併輪廓跟明度貼圖、增加模糊效果">合併輪廓跟明度貼圖、增加模糊效果</a></li>
+                    <li>
+                        <a href="#%e8%bc%b8%e5%87%ba%e8%b2%bc%e5%9c%96" aria-label="輸出貼圖">輸出貼圖</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><blockquote>
+<p>此筆記內容的教學是ArtStation上的<a href="https://www.artstation.com/learning/courses/4vk/healing-spell-vfx-using-shapes-to-create-textures-in-substance-designer/chapters/xYme/magic-circle-texture-blockout">Magic Circle Texture</a>，第一章有Substance Designer基礎的節點介紹，推薦給完全沒使用過Substance Designer的初學者看</p>
+</blockquote>
+<h3 id="製作愛心貼圖">製作愛心貼圖<a hidden class="anchor" aria-hidden="true" href="#製作愛心貼圖">#</a></h3>
+<p><img loading="lazy" src="1.png" alt="Image"  />
+
+Shape在<code>Transformation 2D</code>移動時邊緣要設定銳利一點，可以在<code>Filtering</code>選擇<strong>Nearest</strong></p>
+<p>用<code>Transformation 2D</code>調整大小，按住<code>Ctrl + Shift</code> 讓它保持居中及等比例縮放</p>
+<h3 id="在愛心外圍添加圓環">在愛心外圍添加圓環<a hidden class="anchor" aria-hidden="true" href="#在愛心外圍添加圓環">#</a></h3>
+<ol>
+<li>選取之前新增的Shpae，按<code>Ctrl + D</code>複製一個調整大小。</li>
+<li>連上<code>Edge Dectect</code>，此節點會在對比度區域周圍畫出輪廓。</li>
+<li>Shape另外拉出一條線連上Splatter Circular，圓環外側新增三個環繞的圓。</li>
+<li>用Blend把三個形狀（愛心、圓環、外側的3個圓）混合在一起，Blend Mode選擇<strong>Max</strong>。
+<img loading="lazy" src="2.png#center" alt="Image"  />
+
+這樣基本構圖就完成了。</li>
+</ol>
+<h3 id="撲克牌花色">撲克牌花色<a hidden class="anchor" aria-hidden="true" href="#撲克牌花色">#</a></h3>
+<p><strong>方法一、用節點組合形狀</strong>
+<img loading="lazy" src="3.png#center" alt="Image"  />
+
+<strong>方法二、利用<code>Text</code> 節點直接輸入字元</strong>
+♥：<code>Alt + 259</code>
+♦：<code>Alt + 260</code>
+♣：<code>Alt + 261</code>
+♠：<code>Alt + 262</code></p>
+<p>可用<code>Alt + 數字鍵</code>輸入，只要確保這個字型有這些符號可以使用就行。
+<img loading="lazy" src="4.png#center" alt="Image"  />
+
+<img loading="lazy" src="5.png#center" alt="Image"  />
+</p>
+<h3 id="將三種花色輸入到圓環外三個圓中">將三種花色輸入到圓環外三個圓中<a hidden class="anchor" aria-hidden="true" href="#將三種花色輸入到圓環外三個圓中">#</a></h3>
+<p><img loading="lazy" src="6.png#center" alt="Image"  />
+
+<img loading="lazy" src="7.png#center" alt="Image"  />
+
+在<code>Splatter Circular</code>節點中增加Input Number，將3種花色作為Input輸入進去。</p>
+<h3 id="用level調整blend混合結果">用Level調整Blend混合結果<a hidden class="anchor" aria-hidden="true" href="#用level調整blend混合結果">#</a></h3>
+<blockquote>
+<p>將花色跟圓環混合後會有重疊的部份，可以利用<strong>Levels</strong>節點製作遮罩</p>
+</blockquote>
+<p><img loading="lazy" src="8.png#center" alt="Image"  />
+
+<img loading="lazy" src="9.png#center" alt="Image"  />
+</p>
+<p>用<code>Level</code>取出花色的圓形Mask，Invert之後連接到Blend的Opacity作為遮罩</p>
+<p><img loading="lazy" src="10.png#center" alt="Image"  />
+</p>
+<h3 id="圓環內增加形狀">圓環內增加形狀<a hidden class="anchor" aria-hidden="true" href="#圓環內增加形狀">#</a></h3>
+<p><strong>1. 製作 Spark Shape</strong>
+<img loading="lazy" src="11.png#center" alt="Image"  />
+</p>
+<p><code>Shape</code>-<code>Quad Transform GrayScale</code>-<code>Transform 2D</code>（/2 Offset0.5/0.5 ）-<code>Mirror</code>（Invert Axis X: <code>True</code>）-<code>Mirror</code>（Mirror Axis Y）</p>
+<p><strong>2. 連接Shape Mapper，調整大小以匹配圓環</strong>
+<img loading="lazy" src="12.png#center" alt="Image"  />
+</p>
+<blockquote>
+<p>被壓縮的閃光形狀有出現分離的圖元，所以需再增加一個形狀來填補之間的空白</p>
+</blockquote>
+<p><strong>3. 圓環的上個節點Shape再連一條Edge Detect出來，用Blend混合</strong></p>
+<p><img loading="lazy" src="13.png#center" alt="Image"  />
+<img loading="lazy" src="14.png#center" alt="Image"  />
+</p>
+<p>再加上之前做好的愛心，得出一張有不同明度值形狀的貼圖。</p>
+<h3 id="利用edge-detect獲取貼圖邊緣">利用Edge Detect獲取貼圖邊緣<a hidden class="anchor" aria-hidden="true" href="#利用edge-detect獲取貼圖邊緣">#</a></h3>
+<p><img loading="lazy" src="15.png#center" alt="Image"  />
+</p>
+<blockquote>
+<p>放大看可能發現線條間有縫隙，縫隙產生原因是之前使用Transform2D縮放導致黑白邊緣之間有插值，要解決這個問題可以將前面的<strong>Mipmap Mode</strong>調整成<strong>Manual</strong>。</p>
+</blockquote>
+<p><img loading="lazy" src="16.png#center" alt="Image"  />
+</p>
+<h3 id="合併輪廓跟明度貼圖增加模糊效果">合併輪廓跟明度貼圖、增加模糊效果<a hidden class="anchor" aria-hidden="true" href="#合併輪廓跟明度貼圖增加模糊效果">#</a></h3>
+<p><img loading="lazy" src="17.png#center" alt="Image"  />
+</p>
+<ul>
+<li>使用到的節點：</li>
+</ul>
+<p><code>Shape Glow Grayscale</code> ：增加外光暈</p>
+<p><code>Radial Blur</code>：外圍圓環加一些徑向模糊</p>
+<blockquote>
+<p>在Texture中偽造一些動態模糊以消除特效播放時可能出現的閃頻效果</p>
+</blockquote>
+<hr>
+<h3 id="輸出貼圖">輸出貼圖<a hidden class="anchor" aria-hidden="true" href="#輸出貼圖">#</a></h3>
+<p><img loading="lazy" src="18.png#center" alt="Image"  />
+
+上面的扳手Icon為Output按鈕。</p>
+<p>Output時預設檔名會依照<code>graph_identifier</code>命名，依照個人習慣會將graph命名為<code>T</code>，Output節點的Identifier命名為<code>MagicCircle_A</code>，如此一來會得到檔名為<code>T_MagicCircle_A</code>的貼圖。
+<img loading="lazy" src="19.png#center" alt="Image"  />
+</p>
+<blockquote>
+<p>下方的Auomatic export when outputs change勾上的話，會在每次Outputs有改變的時候自動輸出貼圖。</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://neqeee.github.io/tags/substance-designer/">Substance Designer</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://neqeee.github.io/posts/vfx/set-alignment-by-initial-location/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>設定 Sprite Alignment 朝向中心</span>
+  </a>
+</nav>
+
+  <div class="disqus markdown">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    
+    
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'jiayusnote';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  </footer>
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://neqeee.github.io/">Jiayu&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

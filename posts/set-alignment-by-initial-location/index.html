@@ -5,16 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>設定 Sprite Alignment 朝向中心 | Jiayu&#39;s Note</title>
+<title>設定 Sprite Alignment 朝向中心 | Jiayu&#39;s Blog</title>
 <meta name="keywords" content="UE4">
 <meta name="description" content="此次為測試 Sprite Facing and Alignment 作的記錄">
-<meta name="author" content="">
+<meta name="author" content="Jiayu">
 <link rel="canonical" href="https://neqeee.github.io/posts/set-alignment-by-initial-location/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.ad89e158798d797dbc6b14b0a50595e5ba00beb211aed73a9c84a7b5b7e2c5e6.css" integrity="sha256-rYnhWHmNeX28axSwpQWV5boAvrIRrtc6nISntbfixeY=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://neqeee.github.io/%3C/favicon.ico%3E">
-<link rel="icon" type="image/png" sizes="16x16" href="https://neqeee.github.io/%3C/favicon-16x16.png%3E">
-<link rel="icon" type="image/png" sizes="32x32" href="https://neqeee.github.io/%3C/favicon-32x32.png%3E">
-<link rel="apple-touch-icon" href="https://neqeee.github.io/%3C/apple_touch_icon.png%3E">
+<link rel="icon" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://neqeee.github.io/img/Avatar_1.png">
+<link rel="apple-touch-icon" href="https://neqeee.github.io/img/Avatar_1.png">
 <link rel="mask-icon" href="https://neqeee.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
@@ -98,20 +98,24 @@
     "UE4"
   ],
   "articleBody": "Sprite Render 設置 Alignment: Custom Alignment\nFacingMode: Custom Facing Vector\n新增 Sprite Facing and Alignment 在Particle Spawn底下新增 Sprite Facing and Alignment\nModule Usage Note\nOn the sprite renderer, setting facing or alignment to custom allows these vectors to control the orientation of sprites. By default the renderer attributes are bound to Particles.SpriteFacing and Particles. Sprite Alignment. If this module is used in an emitter script, it sets the emitter versions of these attributes instead for use when the sprite source mode is set to “Emitter”. Sprite facing can be considered the normal of the particle.\nSprite alignment can be considered the tangent to that normal.\nIf only sprite facing is set to custom, alignment will do its best to orient around that facing direction.\nSprite Facing and Alignment are always World Space vectors, so we provide some default transformations when working in Localspace which can be overridden.\n可以將 Sprite Facing 視為 Sprite 的法線，Alignment 視為該法線的切線\nFacing 設為 (0, 0, 1) → Sprite面垂直 Z 軸、正面朝 Z 正軸\nAlignment 設為(0, 1, 0) → Sprite 貼圖的頂部朝 Y 正軸\n這邊的向量只會影響 Sprite 貼圖的方向，大小不會影響，所以數字都設為 1\n想得效的效果：Sprite貼圖頂部全朝向Emitter的中心（或相反）\n新增一個 Module，要 Get 的屬性有兩個\nParticle Position\nEngine Owner Position\n一個是每顆粒子的位置，一個是發射器的初始位置\n兩者相減，得出的向量連接Dirction and Length Safe，作用是讀取向量的方向和長度\n將向量的方向 Set Particle Alignment 後，Library Visibility 選擇 Exposed，再應用到 Particle Spawn 底下\n這時獲得一個愛心都朝內的效果了！\n如果要朝外，可以把兩個向量對調，或是在 Initialize Particle 的 UV Mode 設 Custom 直接把 Y 改為 -1，愛心就會直接朝外了\n",
-  "wordCount" : "217",
+  "wordCount" : "487",
   "inLanguage": "en",
   "datePublished": "2022-08-25T01:38:40+08:00",
   "dateModified": "2022-08-25T01:38:40+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Jiayu"
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://neqeee.github.io/posts/set-alignment-by-initial-location/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Jiayu's Note",
+    "name": "Jiayu's Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://neqeee.github.io/%3C/favicon.ico%3E"
+      "url": "https://neqeee.github.io/img/Avatar_1.png"
     }
   }
 }
@@ -138,7 +142,9 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://neqeee.github.io/" accesskey="h" title="Jiayu&#39;s Note (Alt + H)">Jiayu&#39;s Note</a>
+            <a href="https://neqeee.github.io/" accesskey="h" title="Jiayu&#39;s Blog ">
+                <img src="https://neqeee.github.io/img/Avater_1.png" alt="" aria-label="logo"
+                    height="50">Jiayu&#39;s Blog</a> 
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -163,6 +169,21 @@
             </div>
         </div>
         <ul id="menu">
+            <li>
+                <a href="https://neqeee.github.io/search/" title="🔍Search (Alt &#43; /)" accesskey=/>
+                    <span>🔍Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://neqeee.github.io/archives/" title="⏱Archives">
+                    <span>⏱Archives</span>
+                </a>
+            </li>
             <li>
                 <a href="https://neqeee.github.io/categories/" title="Categories">
                     <span>Categories</span>
@@ -192,7 +213,7 @@
     <div class="post-description">
       此次為測試 Sprite Facing and Alignment 作的記錄
     </div>
-    <div class="post-meta"><span title='2022-08-25 01:38:40 +0800 CST'>August 25, 2022</span>
+    <div class="post-meta"><span title='2022-08-25 01:38:40 +0800 CST'>2022-08-25</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Jiayu
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -345,6 +366,7 @@ Sprite facing can be considered the normal of the particle.</p>
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
   </div>
   </footer>
 
@@ -353,7 +375,7 @@ Sprite facing can be considered the normal of the particle.</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://neqeee.github.io/">Jiayu&#39;s Note</a></span>
+    <span>&copy; 2022 <a href="https://neqeee.github.io/">Jiayu&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -419,6 +441,53 @@ Sprite facing can be considered the normal of the particle.</p>
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 
